@@ -4,7 +4,7 @@ AM_CPPFLAGS = -D_GNU_SOURCE
 
 AM_CFLAGS = -O2 -Wall
 AM_CFLAGS += -Wmissing-prototypes -Wmissing-declarations -Wredundant-decls
-AM_CFLAGS += -fno-strict-aliasing
+AM_CFLAGS += -fno-strict-aliasing -lpthread
 
 LDFLAGS += -rdynamic
 
