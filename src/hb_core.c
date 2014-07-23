@@ -19,6 +19,15 @@
 extern struct server server;
 extern struct client client;
 
+static void version(core_t *);
+static void help(core_t *);
+static void daemonize(core_t *);
+static void port(core_t *);
+
+static void parse_argname(const char *, char *, char *);
+static char ** normalize_args(int *, char **);
+static void core_parse_args(core_t *, int, char **);
+
 /* Output command version. */
 static void version(core_t *self)
 {

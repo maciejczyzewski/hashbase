@@ -9,6 +9,7 @@ AC_PREREQ([2.64])
 AC_INIT([hashbase], [HB_MAJOR.HB_MINOR.HB_PATCH], [HB_BUGS])
 AC_CONFIG_SRCDIR([src/hb.c])
 AC_CONFIG_AUX_DIR([build])
+AC_CONFIG_MACRO_DIR([m4])
 AC_CANONICAL_SYSTEM
 
 # Initialize automake
