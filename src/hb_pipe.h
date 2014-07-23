@@ -39,18 +39,6 @@ struct pipe_hdr_t {
     char buf[];
 };
 
-static inline size_t pipe_len(const pipe_t s)
-{
-    struct pipe_hdr_t *sh = (void*)(s-sizeof *sh);
-    return sh->len;
-}
-
-static inline size_t pipe_avail(const pipe_t s)
-{
-    struct pipe_hdr_t *sh = (void*)(s-sizeof *sh);
-    return sh->free;
-}
-
 pipe_t  pipe_newlen(const void *init, size_t initlen);
 pipe_t  pipe_new(const char *init);
 pipe_t  pipe_empty(void);

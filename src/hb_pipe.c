@@ -60,6 +60,12 @@ pipe_t pipe_new(const char *init)
     return pipe_newlen(init, initlen);
 }
 
+size_t pipe_len(const pipe_t s)
+{
+    struct pipe_hdr_t *sh = (void*)(s-sizeof *sh);
+    return sh->len;
+}
+
 /* Duplicate an pipe_t string. */
 pipe_t pipe_dup(const pipe_t s)
 {
@@ -71,6 +77,12 @@ void pipe_free(pipe_t s)
 {
     if (s == NULL) return;
     free(s-sizeof(struct pipe_hdr_t));
+}
+
+size_t pipe_avail(const pipe_t s)
+{
+    struct pipe_hdr_t *sh = (void*)(s-sizeof *sh);
+    return sh->free;
 }
 
 /* Set the pipe_t string length to the length as obtained with strlen(), so

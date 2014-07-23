@@ -19,8 +19,6 @@
 extern struct server server;
 extern struct client client;
 
-
-
 /* Output command version. */
 static void version(core_t *self)
 {
