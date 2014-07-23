@@ -36,7 +36,9 @@ static void help(core_t *self)
     printf("  Options:\n");
     printf("\n");
 
-    for (int i = 0; i < self->option_count; ++i) {
+    int i;
+
+    for (i = 0; i < self->option_count; ++i) {
         core_option_t *option = &self->options[i];
         printf("    %s, %-25s %s\n"
                , option->small
@@ -70,7 +72,7 @@ static void daemonize(core_t *self)
         core_close(1);
     }
 
-    chdir("/");
+    server.status = chdir("/");
 
     close(STDIN_FILENO);
     close(STDOUT_FILENO);
@@ -183,6 +185,7 @@ static char ** normalize_args(int *argc, char **argv)
     int alloc = *argc + 1;
     char **nargv = malloc(alloc * sizeof(char *));
     int i;
+    size_t j;
 
     for (i = 0; argv[i]; ++i) {
         const char *arg = argv[i];
@@ -192,7 +195,7 @@ static char ** normalize_args(int *argc, char **argv)
         if (len > 2 && '-' == arg[0] && !strchr(arg + 1, '-')) {
             alloc += len - 2;
             nargv = realloc(nargv, alloc * sizeof(char *));
-            for (size_t j = 1; j < len; ++j) {
+            for (j = 1; j < len; ++j) {
                 nargv[size] = malloc(3);
                 sprintf(nargv[size], "-%c", arg[j]);
                 size++;
