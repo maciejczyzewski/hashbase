@@ -4,9 +4,9 @@ AM_CPPFLAGS = -D_GNU_SOURCE
 
 AM_CFLAGS = -O2 -Wall
 AM_CFLAGS += -Wmissing-prototypes -Wmissing-declarations -Wredundant-decls
-AM_CFLAGS += -fno-strict-aliasing -lpthread
+AM_CFLAGS += -fno-strict-aliasing
 
-LDFLAGS += -rdynamic
+LDFLAGS += -rdynamic -lpthread
 
 hashbase_SOURCES =              \
     hb_core.c hb_core.h         \

@@ -63,7 +63,7 @@ static void daemonize(core_t *self)
 
     if (server.pid > 0) {
         fprintf(stdout, "hb: %s daemon process running [fd: %d]...\n", HB_LOG_OK, server.pid);
-        core_close(0);
+        exit(0);
     }
 
     umask(0);
