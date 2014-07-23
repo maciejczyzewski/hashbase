@@ -4,6 +4,9 @@ m4_define([HB_MINOR], 0)
 m4_define([HB_PATCH], 1)
 m4_define([HB_BUGS], [maciejanthonyczyzewski@gmail.com])
 
+# Include m4 macros
+m4_include([m4/ax_pthread.m4])
+
 # Initialize autoconf
 AC_PREREQ([2.64])
 AC_INIT([hashbase], [HB_MAJOR.HB_MINOR.HB_PATCH], [HB_BUGS])
@@ -34,6 +37,14 @@ AM_PROG_CC_C_O
 # Define Makefiles
 AC_CONFIG_FILES([Makefile
                  src/Makefile])
+
+# Pthread
+AX_PTHREAD( [
+            AC_DEFINE(HAVE_PTHREAD,1,[Define if you have POSIX threads libraries and header files.])
+            CLIBS="$PTHREAD_LIBS $LIBS"
+            CFLAGS="$CFLAGS $PTHREAD_CFLAGS"
+            LDFLAGS="$LDFLAGS $PTHREAD_CFLAGS"
+            CC="$PTHREAD_CC"],[])
 
 # Generate the "configure" script
 AC_OUTPUT
