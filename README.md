@@ -8,7 +8,7 @@ Flexible hackable-storage.
 
 ## Introduction
 
-It's a fast, efficient on-disk/in-memory database with many different kind of data structure.
+It's a fast, efficient on-disk/in-memory database with many different kind of data structures.
 
 #### More reading:
 
