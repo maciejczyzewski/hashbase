@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <pthread.h>
 
 #include <hb_core.h>
 
@@ -82,7 +83,7 @@ void *net_handler(void *socket_desc)
                 pipe_trim(buffer, "\r\n");
                 packet = net_command(buffer);
                 packet = pipe_cat(packet, "\r\n");
-                write(sock, packet, (int) pipe_len(packet));
+                server.status = write(sock, packet, (int) pipe_len(packet));
 
                 buffer = pipe_empty();
                 packet = pipe_empty();
