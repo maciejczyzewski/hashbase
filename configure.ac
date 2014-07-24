@@ -35,16 +35,14 @@ AC_PROG_MAKE_SET
 AM_PROG_CC_C_O
 
 # Define Makefiles
-AC_CONFIG_FILES([Makefile
-                 src/Makefile])
+AC_CONFIG_FILES([Makefile src/Makefile])
 
 # Pthread
-AX_PTHREAD( [
-            AC_DEFINE(HAVE_PTHREAD,1,[Define if you have POSIX threads libraries and header files.])
+AX_PTHREAD([AC_DEFINE(HAVE_PTHREAD, 1, [Define if you have POSIX threads libraries and header files.])
             CLIBS="$PTHREAD_LIBS $LIBS"
             CFLAGS="$CFLAGS $PTHREAD_CFLAGS"
             LDFLAGS="$LDFLAGS $PTHREAD_CFLAGS"
-            CC="$PTHREAD_CC"],[])
-
+            CC="$PTHREAD_CC"], [])
+            
 # Generate the "configure" script
 AC_OUTPUT
