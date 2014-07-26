@@ -13,6 +13,7 @@ It's a fast, efficient on-disk/in-memory database with many different kind of da
 #### More reading:
 
 - [Installation](#installation): Step-by-step instructions for getting hashbase running on your computer.
+- [Usage](#usage): List of commands.
 - [Contributing](#contributing): Explanation of how you can join the project.
 - [License](#license): Clarification of certain rules.
 
@@ -43,6 +44,46 @@ Install programs. This operation must be carried out by the root user.
 
 ```bash
 $ make install
+```
+
+## Usage
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/MaciejCzyzewski/hashbase/master/screenshot-2.png"/>
+</div>
+
+This script is the primary interface for starting and stopping the hashbase server.
+
+### Start
+
+To start a daemonized (background) instance of hashbase.
+
+```bash
+$ hashbase -d
+```
+
+### Console
+
+Alternatively, if you want to run a foreground instance of hashbase.
+
+```bash
+$ hashbase
+```
+
+### Stop
+
+Stopping a foreground or background instance of hashbase can be done from a shell prompt.
+
+```bash
+$ hashbase -s
+```
+
+### Help
+
+Displays a brief summary of the basic options.
+
+```bash
+$ hashbase -h
 ```
 
 ## Contributing
