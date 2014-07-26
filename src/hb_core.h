@@ -73,6 +73,7 @@
 #define HB_NET_BUFFER       512
 #define HB_NET_BACKLOG      256
 
+#define HB_CORE_LOCK        "/tmp/hashbase.pid"
 #define HB_CORE_MAX_OPTIONS 32
 #define HB_CORE_MAX_ARGS    32
 
@@ -94,6 +95,7 @@ struct server {
     struct sockaddr_in      addr;             /* network : tcp addr */
 
     pid_t                   pid;              /* process : pid */
+    char *                  lock;             /* process : lock */
     bool                    daemonize:1;      /* process : daemon */
     bool                    keepRunning:1;    /* process : status */
 };
@@ -110,8 +112,10 @@ struct client {
  * HASHBASE modules
  *-------------------------------------------------------------------------- */
 
-#include <hb_net.h>
+#include <hb_args.h>
+#include <hb_ascii.h>
 #include <hb_map.h>
+#include <hb_net.h>
 #include <hb_pipe.h>
 #include <hb_util.h>
 
@@ -119,38 +123,7 @@ struct client {
  * HASHBASE functions
  *-------------------------------------------------------------------------- */
 
-struct core;
-
-typedef void (* core_callback_t)(struct core *self);
-
-typedef struct {
-    int optional_arg;
-    int required_arg;
-    char *argname;
-    char *large;
-    const char *small;
-    const char *large_with_arg;
-    const char *description;
-    core_callback_t cb;
-} core_option_t;
-
-typedef struct core {
-    void *data;
-    const char *usage;
-    const char *arg;
-    const char *name;
-    const char *version;
-    int option_count;
-    core_option_t options[HB_CORE_MAX_OPTIONS];
-    int argc;
-    char *argv[HB_CORE_MAX_ARGS];
-    char **nargv;
-} core_t;
-
 void core_init(int, char * []);
 void core_close(int);
-void core_free(core_t *);
-void core_option(core_t *, const char *, const char *, const char *, core_callback_t);
-void core_parse(core_t *, int, char **);
 
 #endif

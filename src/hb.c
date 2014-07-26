@@ -48,6 +48,7 @@ int main(int argc , char *argv[])
     signal(SIGINT, core_close);
 
     server.pid        = getpid();
+    server.lock       = HB_CORE_LOCK;
 
     server.port       = HB_NET_PORT;
     server.backlog    = HB_NET_BACKLOG;

@@ -29,7 +29,7 @@ int net_init(void)
     server.addr.sin_port = htons(server.port);
 
     if (bind(server.socket, (struct sockaddr *)&server.addr, sizeof(server.addr)) < HB_OK) {
-        fprintf(stdout, "hb: %s device or resource busy\n", HB_LOG_ERR);
+        fprintf(stdout, "hb: %s port is already in use\n", HB_LOG_ERR);
         return HB_ERR;
     }
 
@@ -69,11 +69,6 @@ void *net_handler(void *socket_desc)
 
     while ((read_size = recv(sock, assocc, HB_NET_BUFFER, 0)) > 0) {
         pipe_t packet = pipe_newlen(assocc, read_size);
-
-        // STREAMS TCP
-        // fprintf(stdout, "hb: %s assocc [%s] (%d)\n", HB_LOG_INF, assocc, (int) strlen(assocc));
-        // fprintf(stdout, "hb: %s buffer [%s] (%d)\n", HB_LOG_INF, buffer, (int) pipe_len(buffer));
-        // fprintf(stdout, "hb: %s packet [%s] (%d)\n", HB_LOG_INF, packet, (int) pipe_len(packet));
 
         buffer = pipe_catpipe(buffer, packet);
         packet = pipe_empty();
