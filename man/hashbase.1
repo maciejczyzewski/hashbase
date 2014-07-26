@@ -16,7 +16,7 @@
 \fBhashbase\fR \fB\-d\fR|\fB\-\-daemonize\fR
 .
 .br
-\fBhashbase\fR \fB\-p\fR \fIport\fR
+\fBhashbase\fR \fB\-\-port\fR=\fINUMBER\fR
 .
 .br
 .
@@ -27,10 +27,14 @@ It\'s a fast, efficient on\-disk/in\-memory database with many different kind of
 .
 .TP
 \fB\-d\fR, \fB\-\-daemonize\fR
-Run in the background\.
+Run in the background as daemon\.
 .
 .TP
-\fB\-p\fR \fIport\fR, \fB\-\-port\fR \fIport\fR
+\fB\-s\fR, \fB\-\-stop\fR
+Close running daemon\.
+.
+.TP
+\fB\-p\fR=\fINUMBER\fR, \fB\-\-port\fR=\fINUMBER\fR
 Set port for server\.
 .
 .TP
@@ -42,13 +46,39 @@ Show hashbase version and exit\.
 Show help and exit\.
 .
 .SH "EXAMPLES"
-Serve TCP server at <tcp://localhost:1207/> as daemon:
+Serve TCP server with debug logging:
 .
 .IP "" 4
 .
 .nf
 
-$ hashbase \-p 1207 \-d
+$ hashbase
+.
+.fi
+.
+.IP "" 0
+.
+.P
+Serve TCP server at localhost:1207 as daemon:
+.
+.IP "" 4
+.
+.nf
+
+$ hashbase \-d \-p 1207
+.
+.fi
+.
+.IP "" 0
+.
+.P
+Close server:
+.
+.IP "" 4
+.
+.nf
+
+$ hashbase \-s
 .
 .fi
 .

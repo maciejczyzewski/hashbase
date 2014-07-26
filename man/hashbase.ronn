@@ -6,7 +6,7 @@ hashbase(1) -- flexible hackable-storage
 `hashbase`<br>
 `hashbase` [<options>...]<br>
 `hashbase` `-d`|`--daemonize`<br>
-`hashbase` `-p` <port><br>
+`hashbase` `--port`=<NUMBER><br>
 
 ## DESCRIPTION
 
@@ -16,9 +16,12 @@ data structures.
 ## OPTIONS
 
   * `-d`, `--daemonize`:
-    Run in the background.
+    Run in the background as daemon.
 
-  * `-p` <port>, `--port` <port>:
+  * `-s`, `--stop`:
+    Close running daemon.
+
+  * `-p`=<NUMBER>, `--port`=<NUMBER>:
     Set port for server.
 
   * `-v`, `--version`:
@@ -29,9 +32,17 @@ data structures.
 
 ## EXAMPLES
 
-Serve TCP server at <tcp://localhost:1207/> as daemon:
+Serve TCP server with debug logging:
 
-    $ hashbase -p 1207 -d
+    $ hashbase
+
+Serve TCP server at localhost:1207 as daemon:
+
+    $ hashbase -d -p 1207
+
+Close server:
+
+    $ hashbase -s
 
 ## BUGS
 

@@ -84,7 +84,7 @@ static void do_stop()
 static void print_help(args_context_t ctx)
 {
     char buffer[2048];
-    printf("\nUsage: hashbase [args...]\n\n");
+    printf("\nUsage: hashbase [options]\n\n");
     printf("%s\n", args_create_help_string(&ctx, buffer, sizeof(buffer)));
     core_close(0);
 }
@@ -96,8 +96,8 @@ static void print_version(args_context_t ctx)
 }
 
 static const args_option_t option_list[] = {
-    { "daemonize", 'd', ARGS_OPTION_TYPE_NO_ARG,   0x0, 'd', "run hashbase as a daemon",                              0x0 },
-    { "stop",      's', ARGS_OPTION_TYPE_NO_ARG,   0x0, 's', "print this help text",                                 0x0 },
+    { "daemonize", 'd', ARGS_OPTION_TYPE_NO_ARG,   0x0, 'd', "run hashbase as a daemon",                             0x0 },
+    { "stop",      's', ARGS_OPTION_TYPE_NO_ARG,   0x0, 's', "close running daemon",                                 0x0 },
     { "port",      'p', ARGS_OPTION_TYPE_REQUIRED, 0x0, 'p', "set the tcp port to listen on",                   "NUMBER" },
     { "help",      'h', ARGS_OPTION_TYPE_NO_ARG,   0x0, 'h', "show hashbase version, usage, options, and exit",      0x0 },
     { "version",   'v', ARGS_OPTION_TYPE_NO_ARG,   0x0, 'v', "show version and exit",                                0x0 },
