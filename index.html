@@ -79,7 +79,7 @@
 <p><code>hashbase</code><br />
 <code>hashbase</code> [<var>options</var>...]<br />
 <code>hashbase</code> <code>-d</code>|<code>--daemonize</code><br />
-<code>hashbase</code> <code>-p</code> <var>port</var><br /></p>
+<code>hashbase</code> <code>--port</code>=<var>NUMBER</var><br /></p>
 
 <h2 id="DESCRIPTION">DESCRIPTION</h2>
 
@@ -88,10 +88,10 @@ data structures.</p>
 
 <h2 id="OPTIONS">OPTIONS</h2>
 
-
 <dl>
-<dt><code>-d</code>, <code>--daemonize</code></dt><dd><p>Run in the background.</p></dd>
-<dt><code>-p</code> <var>port</var>, <code>--port</code> <var>port</var></dt><dd><p>Set port for server.</p></dd>
+<dt><code>-d</code>, <code>--daemonize</code></dt><dd><p>Run in the background as daemon.</p></dd>
+<dt><code>-s</code>, <code>--stop</code></dt><dd><p>Close running daemon.</p></dd>
+<dt><code>-p</code>=<var>NUMBER</var>, <code>--port</code>=<var>NUMBER</var></dt><dd><p>Set port for server.</p></dd>
 <dt><code>-v</code>, <code>--version</code></dt><dd><p>Show hashbase version and exit.</p></dd>
 <dt><code>-h</code>, <code>--help</code></dt><dd><p>Show help and exit.</p></dd>
 </dl>
@@ -99,9 +99,19 @@ data structures.</p>
 
 <h2 id="EXAMPLES">EXAMPLES</h2>
 
-<p>Serve TCP server at &lt;tcp://localhost:1207/> as daemon:</p>
+<p>Serve TCP server with debug logging:</p>
 
-<pre><code>$ hashbase -p 1207 -d
+<pre><code>$ hashbase
+</code></pre>
+
+<p>Serve TCP server at localhost:1207 as daemon:</p>
+
+<pre><code>$ hashbase -d -p 1207
+</code></pre>
+
+<p>Close server:</p>
+
+<pre><code>$ hashbase -s
 </code></pre>
 
 <h2 id="BUGS">BUGS</h2>
