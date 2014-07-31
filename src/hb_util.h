@@ -37,4 +37,6 @@
 #define MIN(a, b)       ((a) < (b) ? (a) : (b))
 #define MAX(a, b)       ((a) > (b) ? (a) : (b))
 
+#define COUNT(a) 		(sizeof(a) / sizeof(*(a)))
+
 #endif

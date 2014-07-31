@@ -28,4 +28,16 @@
 #ifndef _HB_ASCII_H_
 #define _HB_ASCII_H_
 
+struct ascii_t {
+	const char *name;
+	pipe_t (*func)(pipe_t *);
+};
+
+pipe_t ascii_inf(pipe_t *);
+pipe_t ascii_set(pipe_t *);
+pipe_t ascii_get(pipe_t *);
+pipe_t ascii_del(pipe_t *);
+pipe_t ascii_len(pipe_t *);
+pipe_t ascii_clr(pipe_t *);
+
 #endif

@@ -10,6 +10,8 @@ Flexible hackable-storage.
 
 It's a fast, efficient on-disk/in-memory database with many different kind of data structures.
 
+Hashbase is written in ANSI C comes with a broad range of features including metrics, multi-client API and rich advanced data structure (KV, List, Hash, ZSet, Bit).
+
 #### More reading:
 
 - [Installation](#installation): Step-by-step instructions for getting hashbase running on your computer.

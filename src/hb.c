@@ -82,6 +82,17 @@ int main(int argc , char *argv[])
 
     fprintf(stdout, "hb: %s waiting for incoming connections...\n", HB_LOG_INF);
 
+    struct ascii_t commands [] = {
+        { "inf", ascii_inf },
+        { "set", ascii_set },
+        { "get", ascii_get },
+        { "del", ascii_del },
+        { "len", ascii_len },
+        { "clr", ascii_clr },
+    };
+
+    server.commands = commands;
+
     net_loop();
 
     return 0;

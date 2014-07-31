@@ -14,5 +14,6 @@ hashbase_SOURCES =              \
     hb_map.c hb_map.h           \
     hb_pipe.c hb_pipe.h         \
     hb_util.c hb_util.h         \
+    hb_ascii.c hb_ascii.h       \
     hb_args.c hb_args.h         \
     hb.c

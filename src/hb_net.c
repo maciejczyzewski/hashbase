@@ -15,8 +15,6 @@
 extern struct server server;
 extern struct client client;
 
-extern map_t database;
-
 int net_init(void)
 {
     if ((server.socket = socket(AF_INET, SOCK_STREAM, 0)) == HB_ERR) {
@@ -89,13 +87,13 @@ void *net_handler(void *socket_desc)
     }
 
     switch (read_size) {
-    case HB_OK:
-        fprintf(stdout, "hb: %s client disconnected [fd: %d]\n", HB_LOG_OK, sock);
-        fflush(stdout);
-        break;
-    case HB_ERR:
-        fprintf(stdout, "hb: %s client receive failed [fd: %d]\n", HB_LOG_ERR, sock);
-        break;
+        case HB_OK:
+            fprintf(stdout, "hb: %s client disconnected [fd: %d]\n", HB_LOG_OK, sock);
+            fflush(stdout);
+            break;
+        case HB_ERR:
+            fprintf(stdout, "hb: %s client receive failed [fd: %d]\n", HB_LOG_ERR, sock);
+            break;
     }
 
     return HB_OK;
@@ -104,43 +102,16 @@ void *net_handler(void *socket_desc)
 void *net_command(void *buffer)
 {
     pipe_t *tokens;
-    int count;
+    int count, i;
 
     tokens = pipe_splitargs(buffer, &count);
 
-    if (strcmp(tokens[0], "inf") == HB_OK) {
-        buffer = pipe_new("hashbase ");
-        buffer = pipe_cat(buffer, HB_VERSION);
-        buffer = pipe_cat(buffer, " (c) 2014 Maciej A. Czyzewski");
-        return buffer;
-    }
-
-    if (strcmp(tokens[0], "set") == HB_OK) {
-        map_put(&database, tokens[1], tokens[2]);
-        return buffer = pipe_fromlonglong(HB_OK);
-    }
-
-    if (strcmp(tokens[0], "get") == HB_OK) {
-        pipe_t var = pipe_empty();
-        server.status = map_get(&database, tokens[1], (void**)(&var));
-
-        if (server.status != HB_ERR) {
-            return buffer = pipe_new(var);
+    for (i = 0 ;; i++) {
+        if ( server.commands[i].name == NULL ) {
+            break;
+        } else if (!strcmp(server.commands[i].name, tokens[0]) && server.commands[i].func) {
+            return buffer = server.commands[i].func(tokens);
         }
-    }
-
-    if (strcmp(tokens[0], "del") == HB_OK) {
-        map_remove(&database, tokens[1]);
-        return buffer = pipe_fromlonglong(HB_OK);
-    }
-
-    if (strcmp(tokens[0], "len") == HB_OK) {
-        return buffer = pipe_fromlonglong(map_length(&database));
-    }
-
-    if (strcmp(tokens[0], "clr") == HB_OK) {
-        map_free(&database);
-        return buffer = pipe_fromlonglong(HB_OK);
     }
 
     return buffer = pipe_fromlonglong(HB_ERR);

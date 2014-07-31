@@ -80,6 +80,17 @@
 #define HB_PIPE_PREALLOC    (1024*1024)
 
 /*-----------------------------------------------------------------------------
+ * HASHBASE modules
+ *-------------------------------------------------------------------------- */
+
+#include <hb_pipe.h>
+#include <hb_args.h>
+#include <hb_ascii.h>
+#include <hb_map.h>
+#include <hb_net.h>
+#include <hb_util.h>
+
+/*-----------------------------------------------------------------------------
  * HASHBASE server/client
  *-------------------------------------------------------------------------- */
 
@@ -87,6 +98,8 @@ struct server {
     /* options with no argument */
 
     int                     status;           /* memory  : last status code */
+
+    struct ascii_t *        commands;         /* ascii   : commands map */
 
     int                     buffer;           /* network : packet lenght */
     int                     backlog;          /* network : tcp backlog */
@@ -107,17 +120,6 @@ struct client {
     struct sockaddr_in      addr;             /* network : tcp addr */
     int                     size;             /* network : tcp size */
 };
-
-/*-----------------------------------------------------------------------------
- * HASHBASE modules
- *-------------------------------------------------------------------------- */
-
-#include <hb_args.h>
-#include <hb_ascii.h>
-#include <hb_map.h>
-#include <hb_net.h>
-#include <hb_pipe.h>
-#include <hb_util.h>
 
 /*-----------------------------------------------------------------------------
  * HASHBASE functions
