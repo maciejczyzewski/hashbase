@@ -92,8 +92,6 @@ $ hashbase -h
 
 Please feel free to contribute to this project! Pull requests and feature requests welcome! :v:
 
-[![Gitter chat](https://badges.gitter.im/MaciejCzyzewski/hashbase.png)](https://gitter.im/MaciejCzyzewski/hashbase)
-
 ## License
 
 See LICENSE file in this repository.
